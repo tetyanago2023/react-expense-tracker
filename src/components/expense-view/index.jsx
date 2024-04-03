@@ -2,9 +2,9 @@ import React from 'react';
 
 const ExpenseView = () => {
     return (
-        <div>
-            
-        </div>
+        <h1>
+            ExpenseView Component
+        </h1>
     );
 };
 
