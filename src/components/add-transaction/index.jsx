@@ -28,8 +28,13 @@ const TransactionForm = ({ onClose, isOpen }) => {
         });
     };
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        handleFormSubmit(formData);
+    };
+
     return <Modal isOpen={isOpen} onClose={onClose}>
-        <form>
+        <form onSubmit={handleSubmit}>
             <ModalOverlay />
             <ModalContent>
                 <ModalHeader>
@@ -56,8 +61,20 @@ const TransactionForm = ({ onClose, isOpen }) => {
                         />
                     </FormControl>
                     <RadioGroup mt="5" value={value} onChange={setValue}>
-                        <Radio name="type" colorScheme="blue" value="income">Income</Radio>
-                        <Radio name="type" colorScheme="red" value="expense">Expense</Radio>
+                        <Radio name="type"
+                               colorScheme="blue"
+                               value="income"
+                               checked={formData.type === "income"}
+                        >
+                            Income
+                        </Radio>
+                        <Radio name="type"
+                               colorScheme="red"
+                               value="expense"
+                               checked={formData.type === "expense"}
+                        >
+                            Expense
+                        </Radio>
                     </RadioGroup>
                 </ModalBody>
                 <ModalFooter>
