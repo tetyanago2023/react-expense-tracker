@@ -13,9 +13,20 @@ import {
     Radio,
     RadioGroup,
 } from "@chakra-ui/react";
+import {useContext} from "react";
+import {GlobalContext} from "../../context";
 
 
 const TransactionForm = ({ onClose, isOpen }) => {
+    const { formData, setFormData, value, setValue, handleFormSubmit } =
+        useContext(GlobalContext);
+
+    const handleFormChange = (event) => {
+        setFormData({
+            ...formData,
+            [event.target.name]: event.target.value,
+        });
+    };
 
     return <Modal isOpen={isOpen} onClose={onClose}>
         <form>
@@ -32,6 +43,7 @@ const TransactionForm = ({ onClose, isOpen }) => {
                             placeholder="Enter transaction description"
                             name="description"
                             type="text"
+                            onChange={handleFormChange}
                         />
                     </FormControl>
                     <FormControl>
@@ -40,9 +52,10 @@ const TransactionForm = ({ onClose, isOpen }) => {
                             placeholder="Enter aransaction amount"
                             name="amount"
                             type="number"
+                            onChange={handleFormChange}
                         />
                     </FormControl>
-                    <RadioGroup mt="5">
+                    <RadioGroup mt="5" value={value} onChange={setValue}>
                         <Radio name="type" colorScheme="blue" value="income">Income</Radio>
                         <Radio name="type" colorScheme="red" value="expense">Expense</Radio>
                     </RadioGroup>
