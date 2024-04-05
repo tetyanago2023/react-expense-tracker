@@ -61,17 +61,21 @@ const TransactionForm = ({ onClose, isOpen }) => {
                         />
                     </FormControl>
                     <RadioGroup mt="5" value={value} onChange={setValue}>
-                        <Radio name="type"
-                               colorScheme="blue"
-                               value="income"
-                               checked={formData.type === "income"}
+                        <Radio
+                            checked={formData.type === "income"}
+                            value="income"
+                            colorScheme="blue"
+                            name="type"
+                            onChange={handleFormChange}
                         >
                             Income
                         </Radio>
-                        <Radio name="type"
-                               colorScheme="red"
-                               value="expense"
-                               checked={formData.type === "expense"}
+                        <Radio
+                            checked={formData.type === "expense"}
+                            value="expense"
+                            colorScheme="red"
+                            name="type"
+                            onChange={handleFormChange}
                         >
                             Expense
                         </Radio>
@@ -81,7 +85,7 @@ const TransactionForm = ({ onClose, isOpen }) => {
                     <Button mr={"4"} onClick={onClose}>
                         Cancel
                     </Button>
-                    <Button>
+                    <Button onClick={onClose} type={"submit"}>
                         Add
                     </Button>
                 </ModalFooter>
